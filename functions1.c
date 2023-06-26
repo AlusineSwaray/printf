@@ -5,20 +5,20 @@
  * _putchar - writes the character c on screen
  * @c: input character
  *
- * Return: 1 on success
+ * Return: 1 
  * on error, -1
  */
 
-int _putchar(char c)
+int _putchar(char c)/*All these functions return int */
 {
 	write(1, &c, 1);
 	return (1);
 }
 /**
- * _strlen - takes a pointer to an int and update its value to 98
- *@s: pointer to be updated
+ * _strlen - checks the length of a string
+ *@s: string
  *
- * Return: int
+ * Return: length of string 
  */
 
 int _strlen(char *s)
@@ -34,10 +34,10 @@ int _strlen(char *s)
 }
 
 /**
- * _puts - takes a pointer to an int and update its value to 98
- *@words: pointer to be updated
+ * _puts - prints a string
+ *@words: string input
  *
- * Return: void
+ * Return: count = length of string printed
  */
 
 int _puts(char *words)
@@ -48,7 +48,7 @@ int _puts(char *words)
 	{
 		_putchar(*words);
 		words++;/*increament the pointer value so it'll point to the next val*/
-		count++;
+		count++;/*counter for chars printed*/
 	}
 	return (count);
 }
