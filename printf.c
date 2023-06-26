@@ -4,41 +4,30 @@
  * its analogous to the printf function in the C library
  * @format: format specified
  *
- * Return: integer of the count of passed string
+ * Return: integer of the count of passed string on success
  */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int num = 0;
+	int i = 0, num = 0;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (*format != '\0')
+	while (format[i] != '\0')
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
 			/** increment i to check next char **/
-			format++;
-			switch (*format)
-			{
-			case 'c':
-				num += _putchar((char) va_arg(args, int));
-				break;
-			case 's':
-				num += _puts(va_arg(args, char *));
-				break;
-			case '%':
-				num += _putchar('%');
-				break;
-			}
-		}
+			i++;
+			num += (*get_func(format[i]))(args);/*this is the most important bit i guess*/
+		}	/*the get_func calls the function as a pointer and then pass args through it*/
 		else
-			num += _putchar(*format);
-		format++;
+			num += _putchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (num);
