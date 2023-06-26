@@ -10,24 +10,38 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num = 0;
+	int num = 0;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (format[i] != '\0')
+	while (format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			/** increment i to check next char **/
-			i++;
-			num += (*get_func(format[i]))(args);/*this is the most important bit i guess*/
-		}	/*the get_func calls the function as a pointer and then pass args through it*/
-		else
-			num += _putchar(format[i]);
-		i++;
+			format++;
+			/** get sepecifier and print **/
+			if (*format == '%')
+			{
+				num += _putchar('%');
+			}
+			else if ((*case_func(*format)) != NULL)
+			{
+				num += case_func(*format)(args);
+			}
+			else
+			{
+				_putchar(*format);
+				num++;
+				format++;
+			}
+		}
+		_putchar(*format);
+		num++;
+		format++;
+
 	}
 	va_end(args);
 	return (num);
