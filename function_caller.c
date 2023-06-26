@@ -6,11 +6,9 @@
  * Return: NULL if function not found
  */
 
-int (*case_func(char s))(va_list)
+int (*get_func(char s))(va_list)
 {
-	case_t array[] = {
-		{'c', print_char}, {'s', print_string},
-	};
+	case_t array[] = {{'c', print_char}, {'s', print_string}, {'%', print_mod}};
 	int i = 0;
 
 	while (array[i].ch)
