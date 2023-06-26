@@ -22,7 +22,7 @@ int _putchar(char c);
 int _strlen(char *s);
 int _puts(char *words);
 
-int (*get_func(char s))(va_list);
+int (*case_func(char s))(va_list);
 
 int print_char(va_list args);
 int print_string(va_list args);

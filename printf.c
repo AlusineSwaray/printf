@@ -17,13 +17,13 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (format[i] != '\0')
+	while (format && format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			/** increment i to check next char **/
 			i++;
-			num += (*get_func(format[i]))(args);/*this is the most important bit i guess*/
+			num += (*case_func(format[i]))(args);/*this is the most important bit i guess*/
 		}	/*the get_func calls the function as a pointer and then pass args through it*/
 		else
 			num += _putchar(format[i]);
