@@ -26,7 +26,9 @@ int _printf(const char *format, ...)
 			num += (*case_func(format[i]))(args);/*this is the most important bit i guess*/
 		}	/*the get_func calls the function as a pointer and then pass args through it*/
 		else
+		{
 			num += _putchar(format[i]);
+		{
 		i++;
 	}
 	va_end(args);
