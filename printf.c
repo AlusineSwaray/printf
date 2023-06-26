@@ -11,7 +11,9 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i = 0, num = 0;
-	char *s;
+
+	if (format == NULL)
+		return (-1);
 
 	va_start(args, format);
 
@@ -24,25 +26,18 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 			case 'c':
-				_putchar((char) va_arg(args, int));
-				num++;
+				num += _putchar((char) va_arg(args, int));
 				break;
 			case 's':
-				s = va_arg(args, char *);
-				write(1, s, strlen(s));
-				num += strlen(s);
+				num += _puts(va_arg(args, char *));
 				break;
 			case '%':
-				_putchar('%');
-				num++;
+				num += _putchar('%');
 				break;
 			}
 		}
 		else
-		{
-			write(1, &format[i], 1);
-			num++;
-		}
+			num += _putchar(format[i]);
 		i++;
 	}
 	va_end(args);
