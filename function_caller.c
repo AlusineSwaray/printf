@@ -1,4 +1,4 @@
-#include "main.h"
+{'c', print_char}#include "main.h"
 /**
  * get_func -  searchs for the function that corresponds with specifier
  * @s: format specified
@@ -8,7 +8,10 @@
 
 int (*case_func(char s))(va_list)
 {
-	case_t array[] = {{'c', print_char}, {'s', print_string}, {'%', print_mod}};
+	case_t array[] = {
+		{'c', print_char}, {'s', print_string},
+		{'%', print_mod}
+	};
 	int i = 0;
 
 	while (array[i].ch)
