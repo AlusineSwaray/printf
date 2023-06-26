@@ -1,6 +1,3 @@
-#include <stdarg.h>
-#include <string.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * _printf -  prints output to stdout according to format specified.
@@ -13,12 +10,11 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i;
-	char c;
+	int i = 0, num = 0;
 	char *s;
 
 	va_start(args, format);
-	i = 0;
+
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -28,22 +24,27 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 			case 'c':
-				c = (char) va_arg(args, int);
-				write(1, &c, 1);
+				_putchar((char) va_arg(args, int));
+				num++;
 				break;
 			case 's':
 				s = va_arg(args, char *);
 				write(1, s, strlen(s));
+				num += strlen(s);
 				break;
 			case '%':
 				_putchar('%');
+				num++;
 				break;
 			}
 		}
 		else
-			write (1, &format[i], 1);
+		{
+			write(1, &format[i], 1);
+			num++;
+		}
 		i++;
 	}
 	va_end(args);
-	return (i);
+	return (num);
 }
