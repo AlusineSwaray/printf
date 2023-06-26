@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include "main.h"
 /**
  * _printf -  prints output to stdout according to format specified.
  * its analogous to the printf function in the C library
@@ -33,6 +34,10 @@ int _printf(const char *format, ...)
 			case 's':
 				s = va_arg(args, char *);
 				write(1, s, strlen(s));
+				break;
+			case '%':
+				_putchar('%');
+				break;
 			}
 		}
 		else
