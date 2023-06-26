@@ -10,20 +10,20 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, num = 0;
+	int num = 0;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (format[i] != '\0')
+	while (*format != '\0')
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
 			/** increment i to check next char **/
-			i++;
-			switch (format[i])
+			format++;
+			switch (*format)
 			{
 			case 'c':
 				num += _putchar((char) va_arg(args, int));
@@ -37,8 +37,8 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-			num += _putchar(format[i]);
-		i++;
+			num += _putchar(*format);
+		format++;
 	}
 	va_end(args);
 	return (num);
