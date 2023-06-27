@@ -21,9 +21,12 @@ int _printf(const char * format, ...);
 int _putchar(char c);
 int _strlen(char *s);
 int _puts(char *words);
+int print_num(int num);
 
 int (*get_func(char s))(va_list);
 
+int print_int(va_list args);
+int print_dec(va_list args);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_mod(va_list args) __attribute__((unused));

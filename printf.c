@@ -23,8 +23,8 @@ int _printf(const char *format, ...)
 		{
 			/** increment i to check next char **/
 			i++;
-			num += (*get_func(format[i]))(args);/*this is the most important bit i guess*/
-		}	/*the get_func calls the function as a pointer and then pass args through it*/
+			num += (*get_func(format[i]))(args);/*the important bit i guess*/
+		}
 		else
 			num += _putchar(format[i]);
 		i++;
