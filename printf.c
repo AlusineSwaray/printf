@@ -23,7 +23,13 @@ int _printf(const char *format, ...)
 		{
 			/** increment i to check next char **/
 			i++;
-			num += (*get_func(format[i]))(args);/*the important bit i guess*/
+			if ((*get_func(format[i])) != NULL)
+				num += (*get_func(format[i]))(args);/*the important bit i guess*/
+			else
+			{
+				num += _putchar('%');
+				i--;
+			}
 		}
 		else
 			num += _putchar(format[i]);
