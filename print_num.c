@@ -1,17 +1,15 @@
 #include "main.h"
 
 /**
- * print_int - prints integer value to the standard output
+ * print_num - prints integer value to the standard output
  * @num: integer to be printed
  *
  * Return: return the bytes printed
  */
 
-int print_int(va_list n)
+int print_num(int num)
 {
-	int num, bytes = 0;
-
-	num = va_arg(n, int);
+	int bytes = 0;
 
 	/** if num is negative print - sign and change num to +ve */
 	if (num < 0)

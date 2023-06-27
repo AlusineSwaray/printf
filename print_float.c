@@ -6,24 +6,26 @@
  * Return: the number of bytes printed
  */
 
-int print_float(float num)
+int print_float(va_list n)
 {
-	int i, bytes = 0;
-	float dec;
+	int i;
+	int bytes = 0;
+	float dec, num;
 
+	num = (float) va_arg(n, double);
 	/** if num is -ve, add print -sign and make num +ve */
 	if (num < 0)
 	{
-		print_char('-');
+		put_char('-');
 		bytes++;
 		num = -num;
 	}
 	/** extract the integer part */
 	i = (int) num;
    /** use print_int to print integer part and increase byte by return value */
-	bytes += print_int(i);
+	bytes += print_num(i);
 	/** print decimal point */
-	print_char('.');
+	put_char('.');
 	bytes++;
 	/** extract decimal part */
 	dec = num - i;
@@ -42,11 +44,14 @@ int print_dec(float dec)
 {
 	int digit, bytes;
 
+	bytes = 0;
+
 	if (dec * 10 == 0)
-		return (bytes);
+		return (bytes++);
 	/** recursively print each of the float number */
 	digit = (int) (dec * 10);
-	print_char('0' + digit);
+	put_char('0' + digit);
 	bytes++;
 	print_dec((dec * 10) - digit);
+	return (bytes);
 }

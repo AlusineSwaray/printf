@@ -9,13 +9,13 @@
 
 int print_string(va_list s)
 {
-	int bytes = 0;
+	int i, bytes = 0;
 	char *str;
 
-	str = va_arg(s, char*);
-	while (*str != '\0')
+	str = va_arg(s, char*)
+	while (str[i] != '\0')
 	{
-		put_char(*str);
+		print_char(*str);
 		bytes++;
 		str++;
 	}

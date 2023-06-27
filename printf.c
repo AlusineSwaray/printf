@@ -17,28 +17,36 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (format && format[i] != '\0')
+	while (format)
 	{
 		if (*format == '%' || !format)
 		{
 			format++;
 			pxn++;
 			/** get sepecifier and print **/
-			if (format == '%')
+			if (*format == '%')
 			{
-				print_char('%');
+				put_char('%');
 				bytes++;
 			}
-			else if (get_spec_func(format, pxn) != '\0')
+			else if ((*get_spec_func(format, pxn)) != NULL)
 			{
 				bytes += get_spec_func(format, pxn)(args);
 			}
+			else
+			{
+				put_char(*format);
+				bytes++;
+				format++;
+				pxn++;
+			}
 		}
-		print_char(format);
+		put_char(*format);
 		bytes++;
 		format++;
 		pxn++;
 
 	}
 	va_end(args);
+	return (bytes);
 }

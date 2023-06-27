@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include "main.h"
 /**
  * print_char - prints a char to standard output
  * @c: character to be printed
@@ -8,7 +8,11 @@
 
 int print_char(va_list c)
 {
-	c = char(c)
-	write(1, &c, 1);
-	return (1);
+	int bytes = 0;
+	char ch;
+
+	ch = (char) va_arg(c, int);
+
+	bytes += put_char(ch);
+	return (bytes);
 }

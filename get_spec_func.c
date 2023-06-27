@@ -16,12 +16,11 @@ int (*get_spec_func(const char *s, int pxn))(va_list)
 		{"f", print_float},
 		{NULL, NULL}
 	};
-	int i;
 
 	while(i < 5)
 	{
 		if (cases[i].type[0] == s[pxn])
-			return ((*cases[i].function));
+			return ((cases[i].function));
 		i++;
 	}
 	return ((*cases[i].function));
