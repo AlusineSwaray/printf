@@ -7,6 +7,7 @@
  */
 int print_num(int num)
 {
+	unsigned int num1;
 	int bytes = 0;
 
 	/** if num is negative print - sign and change num to +ve */
@@ -14,15 +15,17 @@ int print_num(int num)
 	{
 		_putchar('-');
 		bytes++;
-		num = -num;
+		num1 = -num;
 	}
+	else
+		num1 =num;
 
 	/** remove the last digit and recur */
-	if (num / 10)
-		print_num(num / 10);
+	if (num1 / 10)
+		print_num(num1 / 10);
 
 	/** print last digit and increment byte **/
-	_putchar(num % 10 + '0');
+	_putchar(num1 % 10 + '0');
 	bytes++;
 	return (bytes);
 }
