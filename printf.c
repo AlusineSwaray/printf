@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int pxn = 0, bytes = 0;
+	int num = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -19,34 +19,30 @@ int _printf(const char *format, ...)
 
 	while (format)
 	{
-		if (*format == '%' || !format)
+		if (*format == '%')
 		{
 			format++;
-			pxn++;
 			/** get sepecifier and print **/
 			if (*format == '%')
 			{
-				put_char('%');
-				bytes++;
+				num += _putchar('%');
 			}
-			else if ((*get_spec_func(format, pxn)) != NULL)
+			else if ((*case_func(*format)) != NULL)
 			{
-				bytes += get_spec_func(format, pxn)(args);
+				num += case_func(*format)(args);
 			}
 			else
 			{
-				put_char(*format);
-				bytes++;
+				_putchar(*format);
+				num++;
 				format++;
-				pxn++;
 			}
 		}
-		put_char(*format);
-		bytes++;
+		_putchar(*format);
+		num++;
 		format++;
-		pxn++;
 
 	}
 	va_end(args);
-	return (bytes);
+	return (num);
 }
