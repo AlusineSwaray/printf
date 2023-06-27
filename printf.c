@@ -1,6 +1,4 @@
-#include <stdarg.h>
-#include <string.h>
-#include <unistd.h>
+#include "main.h"
 /**
  * _printf -  prints output to stdout according to format specified.
  * its analogous to the printf function in the C library
@@ -12,33 +10,34 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i;
-	char c;
-	char *s;
+	int pxn = 0, bytes = 0;
+
+	if (format == NULL)
+		return (-1);
 
 	va_start(args, format);
-	i = 0;
-	while (format[i])
+
+	while (*format != '\0')
 	{
-		if (format[i] == '%')
+		if (*format == '%' || !format)
 		{
-			/** increment i to check next char **/
-			i++;
-			switch (format[i])
+			format++;
+			pxn++;
+			/** get sepecifier and print **/
+			if (format == '%')
 			{
-			case 'c':
-				c = (char) va_arg(args, int);
-				write(1, &c, 1);
-				break;
-			case 's':
-				s = va_arg(args, char *);
-				write(1, s, strlen(s));
+				print_char('%');
+				bytes++;
+			}
+			else if (get_spec_func(format, pxn) != '\0')
+			{
+				bytes += get_spec_func(format, pxn)(args);
 			}
 		}
-		else
-			write(1, &format[i], 1);
-		i++;
+		print_char(format);
+		bytes++;
+		format++;
+		pxn++;
 	}
 	va_end(args);
-	return (i);
 }
