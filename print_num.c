@@ -7,7 +7,7 @@
  */
 int print_num(int num)
 {
-	unsigned int num1;
+	int num1;
 	int bytes = 0;
 
 	/** if num is negative print - sign and change num to +ve */
@@ -62,4 +62,3 @@ int print_int(va_list args)
 	count = print_num(iNt);
 	return (count);
 }
-
