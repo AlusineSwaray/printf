@@ -24,7 +24,7 @@ int print_num(int num)
 	/** remove the last digit and recur */
 	if (num1 / 10)
 	{
-		print_num(num1 / 10);
+		bytes += print_num(num1 / 10);
 	}
 	/** print last digit and increment byte **/
 	_putchar((num1 % 10) + '0');
