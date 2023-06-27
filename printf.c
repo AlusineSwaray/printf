@@ -4,7 +4,7 @@
  * its analogous to the printf function in the C library
  * @format: format specified
  *
- * Return: integer of the count of passed string
+ * Return: integer of the count of passed string on success
  */
 
 int _printf(const char *format, ...)
@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (*format != '\0')
+	while (format && format[i] != '\0')
 	{
 		if (*format == '%' || !format)
 		{
@@ -38,6 +38,7 @@ int _printf(const char *format, ...)
 		bytes++;
 		format++;
 		pxn++;
+
 	}
 	va_end(args);
 }
