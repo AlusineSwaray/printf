@@ -10,7 +10,7 @@ int (*get_func(char s))(va_list)
 {
 	case_t array[] = {
 		{'c', print_char}, {'s', print_string}, {'%', print_mod},
-		{'d', print_dec}, {'i', print_int}
+		{'d', print_int}, {'i', print_int}
 	};
 	int i = 0;
 
