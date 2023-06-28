@@ -27,8 +27,7 @@ int _printf(const char *format, ...)
 				num += (*get_func(format[i]))(args);/*the important bit i guess*/
 			else
 			{
-				num += _putchar('%');
-				i--;
+				return (-1);
 			}
 		}
 		else
