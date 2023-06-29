@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i = 0, num = 0;
-	
+
 	if (_strlen(format) == 0)
 		return (-1);
 	if (format == NULL|| *format == '\0')
@@ -29,7 +29,8 @@ int _printf(const char *format, ...)
 				num += (*get_func(format[i]))(args);/*the important bit i guess*/
 			else
 			{
-				return (-1);
+				num += _putchar('%');
+				i--;
 			}
 		}
 		else

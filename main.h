@@ -30,4 +30,6 @@ int print_dec(va_list args);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_mod(va_list args) __attribute__((unused));
+int to_binary(va_list args);
+int print_binary(int);
 #endif /** ifndef _MAIN_H_ */
